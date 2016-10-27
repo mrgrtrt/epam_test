@@ -1,16 +1,14 @@
-/*package epam.testauto.pageobjects;
+package epam.testauto.pageobjects;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.Assert;
 
-/**
- * Created by Rita on 27.10.2016.
- */
-/*
+
 public class JsAlert {
     private WebDriver driver;
-    private String textAlert = "alert('The execution is started');";
+    private String textAlert = "The execution is started";
 
     public JsAlert(WebDriver driver) {
         this.driver = driver;
@@ -18,9 +16,8 @@ public class JsAlert {
 
     public JsAlert generateAlert() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(textAlert);
-        Assert.assertEquals(driver.switchTo().alert().getText(), textAlert);
-        driver.switchTo().alert().accept();
+        js.executeScript("alert('" + textAlert + "');");
+
         return this;
     }
 
@@ -33,4 +30,4 @@ public class JsAlert {
         Assert.assertEquals(driver.switchTo().alert().getText(), textAlert);
         return this;
     }
-}*/
+}
