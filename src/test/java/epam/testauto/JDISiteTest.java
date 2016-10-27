@@ -1,14 +1,12 @@
 package epam.testauto;
 
-//import epam.testauto.pageobjects.JsAlert;
+import epam.testauto.pageobjects.JsAlert;
 import epam.testauto.pages.DifferentElementPage;
 import epam.testauto.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.*;
 
-/**
- * Created by Rita on 26.10.2016.
- */
 public class JDISiteTest extends SetupDriver {
     private WebDriver driver;
 
@@ -38,11 +36,15 @@ public class JDISiteTest extends SetupDriver {
                                    .checkRadio(radioData);
     }
 
-    /*@Test(priority = 3)
-    public void checkAlert() throws InterruptedException {
-        JsAlert jsAlert = new JsAlert(driver)
-                            .generateAlert();
-                            .getTextAlert()
-                            .acceptAlert();
-    }*/
+    @Test(priority = 3)
+    public void checkAlert() throws WebDriverException{
+        JsAlert jsAlert = new JsAlert(driver);
+
+        try {
+            jsAlert.generateAlert();
+        } catch (WebDriverException e) {
+            jsAlert.getTextAlert()
+                    .acceptAlert();
+        }
+    }
 }
