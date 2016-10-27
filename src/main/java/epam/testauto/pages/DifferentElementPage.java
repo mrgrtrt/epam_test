@@ -4,16 +4,8 @@ import epam.testauto.basics.BasePage;
 import epam.testauto.pageobjects.Checkbox;
 import epam.testauto.pageobjects.RadioButton;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 
-import javax.xml.ws.WebEndpoint;
-
-/**
- * Created by Rita on 27.10.2016.
- */
 public class DifferentElementPage extends BasePage {
     private Checkbox water;
     private Checkbox earth;

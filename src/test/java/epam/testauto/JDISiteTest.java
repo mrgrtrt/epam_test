@@ -39,7 +39,6 @@ public class JDISiteTest extends SetupDriver {
     @Test(priority = 3)
     public void checkAlert() throws WebDriverException{
         JsAlert jsAlert = new JsAlert(driver);
-
         try {
             jsAlert.generateAlert();
         } catch (WebDriverException e) {
