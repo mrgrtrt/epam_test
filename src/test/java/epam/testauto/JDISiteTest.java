@@ -1,5 +1,9 @@
 package epam.testauto;
 
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import epam.testauto.pageobjects.JsAlert;
 import epam.testauto.pages.DifferentElementPage;
 import epam.testauto.pages.LoginPage;
@@ -10,33 +14,45 @@ import org.testng.annotations.*;
 public class JDISiteTest extends SetupDriver {
     private WebDriver driver;
 
+    @Given("I am on Login page")
+    public void onLoginPage(){
+        System.out.println("login page");
+    }
+
     @BeforeSuite
     public void setup(){
         driver = getDriver();
     }
 
-    @Test(priority = 0, dataProviderClass = Data.class, dataProvider = "login")
+
+
+    @Test(priority = 1, dataProviderClass = Data.class, dataProvider = "login")
+    @When("I login as (.*)/(.*)/(.*)")
     public void login(boolean isCorrect, String sUsername, String sPassword) {
+
+        System.out.println(sUsername + "; " + sPassword);
+
         LoginPage loginPage = new LoginPage(driver)
                         .openProfile()
                         .typeLoginData(sUsername, sPassword)
                         .submitLoginForm(isCorrect);
+
     }
 
-    @Test(priority = 1)
-    public void checkBox() {
+
+    @Test(priority = 2, dataProviderClass = Data.class, dataProvider = "checkbox")
+    public void checkBox(boolean waterCheck, boolean earthCheck, boolean windCheck, boolean fireCheck) {
         DifferentElementPage differentElementPage = new DifferentElementPage(driver)
-                                   .checkAllCheckboxes()
-                                   .uncheckAllCheckboxes();
+                                   .checkboxesCheck(waterCheck, earthCheck, windCheck, fireCheck);
     }
 
-    @Test(priority = 2, dataProviderClass = Data.class, dataProvider = "radio")
+    @Test(priority = 3, dataProviderClass = Data.class, dataProvider = "radio")
     public void checkRadioButtons(String radioData) {
         DifferentElementPage differentElementPage = new DifferentElementPage(driver)
                                    .checkRadio(radioData);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void checkAlert() throws WebDriverException{
         JsAlert jsAlert = new JsAlert(driver);
         try {
@@ -45,5 +61,10 @@ public class JDISiteTest extends SetupDriver {
             jsAlert.getTextAlert()
                     .acceptAlert();
         }
+    }
+
+    @Then("^Admin page opens$")
+    public void adminPageOpens() throws Throwable {
+        System.out.println("opening page");
     }
 }

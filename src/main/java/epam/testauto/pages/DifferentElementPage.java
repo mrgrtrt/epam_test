@@ -13,6 +13,12 @@ public class DifferentElementPage extends BasePage {
     private Checkbox fire;
     private RadioButton radioButton;
 
+    private void checkboxSwitch(Checkbox checkbox, boolean toCheck) {
+        if (toCheck) {
+            checkbox.check();
+        } else checkbox.uncheck();
+    }
+
     public DifferentElementPage(WebDriver driver) {
         super(driver);
         loadPage("https://jdi-framework.github.io/tests/page8.htm");
@@ -22,28 +28,16 @@ public class DifferentElementPage extends BasePage {
         fire = new Checkbox(driver, "Fire");
     }
 
-    public DifferentElementPage checkAllCheckboxes() {
-        water.check();
-        earth.check();
-        wind.check();
-        fire.check();
-        Assert.assertTrue(water.isChecked());
-        Assert.assertTrue(earth.isChecked());
-        Assert.assertTrue(wind.isChecked());
-        Assert.assertTrue(fire.isChecked());
+    public DifferentElementPage checkboxesCheck(boolean waterCheck, boolean earthCheck, boolean windCheck, boolean fireCheck) {
+        checkboxSwitch(water, waterCheck);
+        checkboxSwitch(earth, earthCheck);
+        checkboxSwitch(wind, windCheck);
+        checkboxSwitch(fire, fireCheck);
 
-        return this;
-    }
-
-    public DifferentElementPage uncheckAllCheckboxes() {
-        water.uncheck();
-        earth.uncheck();
-        wind.uncheck();
-        fire.uncheck();
-        Assert.assertFalse(water.isChecked());
-        Assert.assertFalse(earth.isChecked());
-        Assert.assertFalse(wind.isChecked());
-        Assert.assertFalse(fire.isChecked());
+        Assert.assertEquals(waterCheck, water.isChecked());
+        Assert.assertEquals(earthCheck, earth.isChecked());
+        Assert.assertEquals(windCheck, wind.isChecked());
+        Assert.assertEquals(fireCheck, fire.isChecked());
         return this;
     }
 
