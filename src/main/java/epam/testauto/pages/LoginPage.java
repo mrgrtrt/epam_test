@@ -7,9 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-/**
- * Created by Rita on 26.10.2016.
- */
 public class LoginPage extends BasePage {
 
     private String errorMessage = "* Login Faild";

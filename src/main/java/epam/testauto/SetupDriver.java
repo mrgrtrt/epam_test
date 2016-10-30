@@ -8,9 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
-/**
- * Created by Rita on 26.10.2016.
- */
 public class SetupDriver {
     private WebDriver driver;
     static String driverPath = "src/test/resources/";
