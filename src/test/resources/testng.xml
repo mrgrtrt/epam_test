@@ -3,9 +3,9 @@
 <suite name="TestSuite" verbose="1" >
     <parameter name="browserType" value="firefox"/>
     <parameter name="indexPageUrl" value="https://jdi-framework.github.io/tests/"/>
-    <test name="JDISiteTesting"   >
-        <packages>
-            <package name="epam.testauto" />
-        </packages>
+    <test name="JDISiteTesting">
+        <classes>
+            <class name="epam.testauto.JDISiteTest"/>
+        </classes>
     </test>
 </suite>
